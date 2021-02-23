@@ -5,15 +5,15 @@ import com.xilidou.framework.aop.advisor.AfterRunningAdvice;
 import com.xilidou.framework.aop.interceptor.AfterRunningAdviceInterceptor;
 import com.xilidou.framework.aop.interceptor.AopMethodInterceptor;
 
-public class AfterRunningAdviceAdapter implements AdviceAdapter{
+public class AfterRunningAdviceAdapter implements AdviceAdapter {
 
-    private AfterRunningAdviceAdapter(){
+    private AfterRunningAdviceAdapter() {
 
     }
 
     private static final AfterRunningAdviceAdapter INSTANTS = new AfterRunningAdviceAdapter();
 
-    public static AfterRunningAdviceAdapter getInstants(){
+    public static AfterRunningAdviceAdapter getInstants() {
         return INSTANTS;
     }
 

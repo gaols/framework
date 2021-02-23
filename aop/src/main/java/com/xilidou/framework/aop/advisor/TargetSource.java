@@ -1,12 +1,24 @@
 package com.xilidou.framework.aop.advisor;
 
-import lombok.Data;
-
-@Data
 public class TargetSource {
 
-    private Class<?> tagetClass;
+    private Class<?> targetClass;
 
-    private Object tagetObject;
+    private Object targetObject;
 
+    public Class<?> getTargetClass() {
+        return targetClass;
+    }
+
+    public void setTargetClass(Class<?> targetClass) {
+        this.targetClass = targetClass;
+    }
+
+    public Object getTargetObject() {
+        return targetObject;
+    }
+
+    public void setTargetObject(Object targetObject) {
+        this.targetObject = targetObject;
+    }
 }

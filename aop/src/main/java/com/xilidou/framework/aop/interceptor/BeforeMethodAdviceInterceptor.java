@@ -13,7 +13,7 @@ public class BeforeMethodAdviceInterceptor implements AopMethodInterceptor {
 
     @Override
     public Object invoke(MethodInvocation mi) throws Throwable {
-        advice.before(mi.getMethod(),mi.getArguments(),mi);
+        advice.before(mi.getMethod(), mi.getArguments(), mi);
         return mi.proceed();
     }
 }

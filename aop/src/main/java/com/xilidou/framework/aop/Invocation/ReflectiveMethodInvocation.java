@@ -6,9 +6,9 @@ import com.xilidou.framework.aop.utils.ReflectionUtils;
 import java.lang.reflect.Method;
 import java.util.List;
 
-public class ReflectioveMethodeInvocation implements ProxyMethodInvocation {
+public class ReflectiveMethodInvocation implements ProxyMethodInvocation {
 
-    public ReflectioveMethodeInvocation(Object proxy, Object target, Method method, Object[] arguments, List<AopMethodInterceptor> interceptorList) {
+    public ReflectiveMethodInvocation(Object proxy, Object target, Method method, Object[] arguments, List<AopMethodInterceptor> interceptorList) {
         this.proxy = proxy;
         this.target = target;
         this.method = method;
@@ -47,7 +47,7 @@ public class ReflectioveMethodeInvocation implements ProxyMethodInvocation {
     public Object proceed() throws Throwable {
 
         //执行完所有的拦截器后，执行目标方法
-        if(currentInterceptorIndex == this.interceptorList.size() - 1) {
+        if (currentInterceptorIndex == this.interceptorList.size() - 1) {
             return invokeOriginal();
         }
 
@@ -57,8 +57,8 @@ public class ReflectioveMethodeInvocation implements ProxyMethodInvocation {
 
     }
 
-    protected Object invokeOriginal() throws Throwable{
-        return ReflectionUtils.invokeMethodUseReflection(target,method,arguments);
+    protected Object invokeOriginal() throws Throwable {
+        return ReflectionUtils.invokeMethodUseReflection(target, method, arguments);
     }
 
 }

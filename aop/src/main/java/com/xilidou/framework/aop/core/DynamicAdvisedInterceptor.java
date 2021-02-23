@@ -10,7 +10,7 @@ import net.sf.cglib.proxy.MethodProxy;
 import java.lang.reflect.Method;
 import java.util.List;
 
-public class DynamicAdvisedInterceptor implements MethodInterceptor{
+public class DynamicAdvisedInterceptor implements MethodInterceptor {
 
     protected final List<AopMethodInterceptor> interceptorList;
     protected final TargetSource targetSource;
@@ -22,7 +22,7 @@ public class DynamicAdvisedInterceptor implements MethodInterceptor{
 
     @Override
     public Object intercept(Object obj, Method method, Object[] args, MethodProxy proxy) throws Throwable {
-        MethodInvocation invocation = new CglibMethodInvocation(obj,targetSource.getTagetObject(),method, args,interceptorList,proxy);
+        MethodInvocation invocation = new CglibMethodInvocation(obj, targetSource.getTargetObject(), method, args, interceptorList, proxy);
         return invocation.proceed();
     }
 }

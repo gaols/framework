@@ -5,14 +5,12 @@ import java.lang.reflect.Method;
 
 public class ReflectionUtils {
 
-    public static Object invokeMethodUseReflection(Object target, Method method,Object[] args){
+    public static Object invokeMethodUseReflection(Object target, Method method, Object[] args) {
 
         method.setAccessible(true);
         try {
-            return method.invoke(target,args);
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (InvocationTargetException e) {
+            return method.invoke(target, args);
+        } catch (IllegalAccessException | InvocationTargetException e) {
             e.printStackTrace();
         }
         return null;

@@ -17,7 +17,7 @@ public class AfterRunningAdviceInterceptor implements AopMethodInterceptor {
     @Override
     public Object invoke(MethodInvocation mi) throws Throwable {
         Object returnVal = mi.proceed();
-        advice.after(returnVal,mi.getMethod(),mi.getArguments(),mi);
+        advice.after(returnVal, mi.getMethod(), mi.getArguments(), mi);
         return returnVal;
     }
 }

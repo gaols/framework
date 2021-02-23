@@ -47,7 +47,7 @@ public class JsonUtils {
 
     public static <T> T readValue(String json, TypeReference valueTypeRef) {
         try {
-            return mapper.readValue(json, valueTypeRef);
+            return mapper.readValue(json, (TypeReference<T>) valueTypeRef);
         } catch (Exception var3) {
             return null;
         }
@@ -55,7 +55,7 @@ public class JsonUtils {
 
     public static <T> T readValue(byte[] bytes, TypeReference valueTypeRef) {
         try {
-            return mapper.readValue(bytes, valueTypeRef);
+            return mapper.readValue(bytes, (TypeReference<T>) valueTypeRef);
         } catch (Exception var3) {
             return null;
         }
@@ -63,7 +63,7 @@ public class JsonUtils {
 
     public static <T> T readValue(InputStream is,TypeReference valueTypeRef){
         try{
-            return mapper.readValue(is,valueTypeRef);
+            return mapper.readValue(is, (TypeReference<T>) valueTypeRef);
         }catch (Exception e){
             return null;
         }
@@ -89,7 +89,7 @@ public class JsonUtils {
         mapper.disable(SerializationFeature.FAIL_ON_EMPTY_BEANS);
         mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
         mapper.enable(DeserializationFeature.ACCEPT_EMPTY_STRING_AS_NULL_OBJECT);
-        mapper.getDeserializationConfig().withoutFeatures(new DeserializationFeature[]{DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES});
+        mapper.getDeserializationConfig().withoutFeatures(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
         mapper.configure(JsonParser.Feature.ALLOW_SINGLE_QUOTES, true);
         mapper.configure(JsonParser.Feature.ALLOW_YAML_COMMENTS, true);
         mapper.configure(JsonParser.Feature.ALLOW_COMMENTS, true);

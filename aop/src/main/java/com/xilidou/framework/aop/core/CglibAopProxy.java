@@ -6,8 +6,7 @@ import lombok.Data;
 import net.sf.cglib.proxy.Callback;
 import net.sf.cglib.proxy.Enhancer;
 
-@Data
-public class CglibAopProxy implements AopProxy{
+public class CglibAopProxy implements AopProxy {
 
     private AdvisedSupport advised;
 
@@ -15,10 +14,9 @@ public class CglibAopProxy implements AopProxy{
 
     private Class<?>[] constructorArgTypes;
 
-    public CglibAopProxy(AdvisedSupport config){
+    public CglibAopProxy(AdvisedSupport config) {
         this.advised = config;
     }
-
 
 
     @Override
@@ -29,9 +27,9 @@ public class CglibAopProxy implements AopProxy{
     @Override
     public Object getProxy(ClassLoader classLoader) {
 
-        Class<?> rootClass = advised.getTargetSource().getTagetClass();
+        Class<?> rootClass = advised.getTargetSource().getTargetClass();
 
-        if(classLoader == null){
+        if (classLoader == null) {
             classLoader = ClassUtils.getDefultClassLoader();
         }
         Enhancer enhancer = new Enhancer();
@@ -40,13 +38,38 @@ public class CglibAopProxy implements AopProxy{
         Callback callbacks = getCallBack(advised);
         enhancer.setCallback(callbacks);
         enhancer.setClassLoader(classLoader);
-        if(constructorArgs != null && constructorArgs.length > 0){
-            return enhancer.create(constructorArgTypes,constructorArgs);
+        if (constructorArgs != null && constructorArgs.length > 0) {
+            return enhancer.create(constructorArgTypes, constructorArgs);
         }
 
         return enhancer.create();
     }
+
     private Callback getCallBack(AdvisedSupport advised) {
-        return new DynamicAdvisedInterceptor(advised.getList(),advised.getTargetSource());
+        return new DynamicAdvisedInterceptor(advised.getList(), advised.getTargetSource());
+    }
+
+    public AdvisedSupport getAdvised() {
+        return advised;
+    }
+
+    public void setAdvised(AdvisedSupport advised) {
+        this.advised = advised;
+    }
+
+    public Object[] getConstructorArgs() {
+        return constructorArgs;
+    }
+
+    public void setConstructorArgs(Object[] constructorArgs) {
+        this.constructorArgs = constructorArgs;
+    }
+
+    public Class<?>[] getConstructorArgTypes() {
+        return constructorArgTypes;
+    }
+
+    public void setConstructorArgTypes(Class<?>[] constructorArgTypes) {
+        this.constructorArgTypes = constructorArgTypes;
     }
 }

@@ -6,7 +6,7 @@ import net.sf.cglib.proxy.MethodProxy;
 import java.lang.reflect.Method;
 import java.util.List;
 
-public class CglibMethodInvocation extends ReflectioveMethodeInvocation {
+public class CglibMethodInvocation extends ReflectiveMethodInvocation {
 
     private MethodProxy methodProxy;
 
@@ -17,6 +17,6 @@ public class CglibMethodInvocation extends ReflectioveMethodeInvocation {
 
     @Override
     protected Object invokeOriginal() throws Throwable {
-        return methodProxy.invoke(target,arguments);
+        return methodProxy.invoke(target, arguments);
     }
 }
